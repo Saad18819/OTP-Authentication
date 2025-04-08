@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTP Authentication</title>
+  <style>
+    body{
+      display: flex;
+      flex-direction:column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: sans-serif,Arial, Helvetica, sans-serif;
+      background: #f0f4f7;
+    }
+    .container{
+      padding: 2rem;
+      background-color:white;
+      border-radius: 10px;
+      width: 300px;
+      box-shadow: 0 0 10px ;
+    }
+    h2{
+      text-align: center;
+    }
+input,button{
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 1rem;
+  padding: 10px;
+border: 1px solid #ccc;
+}
+#message{
+  color: green;
+  font-size: medium;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+@media(max-width:400px){
+  .container{
+    width:90px;
+    padding: 1rem;
+  }
+  h2{
+    font-size: 15px;
+  }
+  input,button{
+    padding: 8px;
+    font-size: 14px;
+  }
+ 
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2>OTP Authentication</h2>
+  <input id="email" type="text" placeholder="Enter Email or Phone" name="contact"/> 
+
+  <button onclick="sendotp()" class="send">Send OTP</button>
+
+  <input id="OTP" type="text" placeholder="Enter OTP" name="OTP"/>
+
+  <button onclick="verifyotp()" class="Verify">Verify OTP</button>
+
+  <div  id="message"></div>
+</div>
+
+<script>
+  let generatedotp;
+  function sendotp(){
+    generatedotp=Math.floor(Math.random()*900000)+100000;
+    alert("Your OTP is "+ generatedotp);
+    document.getElementById("message").innerHTML="OTP SENT!";
+
+  }
+  function verifyotp(){
+  let typedotp=document.getElementById("OTP").value;
+    if (typedotp==generatedotp){
+      document.getElementById("message").innerHTML="OTP Verified ✅"
+    }
+    else{
+      document.getElementById("message").innerHTML="Invalid OTP ❌";
+    }
+  }
+</script>
+</body>
+</html>
